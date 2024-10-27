@@ -15,13 +15,13 @@ public class CitasDao {
     }
 
     public boolean agregarCita(Citas cita) {
-        String sql = "INSERT INTO citas (idDoctor, idPaciente, fecha, hora, servicio) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO citas (idDoctor, idCliente, fecha, mensaje, estado) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, cita.getIdDoctor());
-            stmt.setInt(2, cita.getIdPaciente());
-            stmt.setDate(3, new java.sql.Date(cita.getFecha().getTime()));
-            stmt.setTime(4, cita.getHora());
-            stmt.setString(5, cita.getServicio());
+            stmt.setInt(2, cita.getIdCliente());
+            stmt.setTimestamp(3, new Timestamp(cita.getFecha().getTime()));
+            stmt.setString(4, cita.getMensaje());
+            stmt.setString(5, cita.getEstado());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -30,13 +30,13 @@ public class CitasDao {
     }
 
     public boolean actualizarCita(Citas cita) {
-        String sql = "UPDATE citas SET idDoctor = ?, idPaciente = ?, fecha = ?, hora = ?, servicio = ? WHERE id = ?";
+        String sql = "UPDATE citas SET idDoctor = ?, idCliente = ?, fecha = ?, mensaje = ?, estado = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, cita.getIdDoctor());
-            stmt.setInt(2, cita.getIdPaciente());
-            stmt.setDate(3, new java.sql.Date(cita.getFecha().getTime()));
-            stmt.setTime(4, cita.getHora());
-            stmt.setString(5, cita.getServicio());
+            stmt.setInt(2, cita.getIdCliente());
+            stmt.setTimestamp(3, new Timestamp(cita.getFecha().getTime()));
+            stmt.setString(4, cita.getMensaje());
+            stmt.setString(5, cita.getEstado());
             stmt.setInt(6, cita.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -66,10 +66,10 @@ public class CitasDao {
                 Citas cita = new Citas(
                         rs.getInt("id"),
                         rs.getInt("idDoctor"),
-                        rs.getInt("idPaciente"),
-                        rs.getDate("fecha"),
-                        rs.getTime("hora"),
-                        rs.getString("servicio")
+                        rs.getInt("idCliente"),
+                        rs.getTimestamp("fecha"),
+                        rs.getString("mensaje"),
+                        rs.getString("estado")
                 );
                 citasList.add(cita);
             }

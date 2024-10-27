@@ -1,25 +1,24 @@
 package models;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class Citas {
     private int id;
     private int idDoctor;
-    private int idPaciente;
+    private int idCliente;
     private Date fecha;
-    private Time hora;
-    private String servicio;
+    private String mensaje;
+    private String estado;
 
     public Citas() {}
 
-    public Citas(int id, int idDoctor, int idPaciente, Date fecha, Time hora, String servicio) {
+    public Citas(int id, int idDoctor, int idCliente, Date fecha, String mensaje, String estado) {
         this.id = id;
         this.idDoctor = idDoctor;
-        this.idPaciente = idPaciente;
+        this.idCliente = idCliente;
         this.fecha = fecha;
-        this.hora = hora;
-        this.servicio = servicio;
+        this.mensaje = mensaje;
+        this.estado = estado;
     }
 
     // Getters y Setters
@@ -39,12 +38,12 @@ public class Citas {
         this.idDoctor = idDoctor;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public Date getFecha() {
@@ -55,19 +54,19 @@ public class Citas {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
-        return hora;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setHora(Time hora) {
-        this.hora = hora;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
-    public String getServicio() {
-        return servicio;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setServicio(String servicio) {
-        this.servicio = servicio;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
