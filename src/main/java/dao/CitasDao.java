@@ -8,7 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Implementación de la interfaz genérica para la entidad Cita
+/**
+ * CitasDAO es una clase que maneja las operaciones de base de datos relacionadas con las citas.
+ */
 public class CitasDAO implements IGenericDAO<Cita> {
 
     @Override
@@ -66,7 +68,13 @@ public class CitasDAO implements IGenericDAO<Cita> {
         st.executeUpdate();
     }
 
-    @Override
+    /**
+     * Elimina una cita de la base de datos según su ID.
+     *
+     * @param id el ID de la cita a eliminar
+     * @return {@code true} si la cita fue eliminada correctamente, {@code false} de lo contrario
+     * @throws SQLException si ocurre un error al acceder a la base de datos
+     */
     public void eliminar(int id) throws SQLException {
         Connection cn = MySQLConexion.getConexion();
         String sql = "DELETE FROM citas WHERE id = ?";
@@ -76,7 +84,16 @@ public class CitasDAO implements IGenericDAO<Cita> {
         st.executeUpdate();
     }
 
-    // Método para ejecutar el procedimiento almacenado 'realizar_cita'
+    /**
+     * Realiza una cita para un cliente con un doctor específico.
+     *
+     * @param cliente el cliente para quien se realiza la cita
+     * @param idDoctor el identificador del doctor
+     * @param fecha la fecha y hora de la cita
+     * @param mensaje un mensaje asociado a la cita
+     * @param estado el estado actual de la cita
+     * @throws SQLException si ocurre un error al interactuar con la base de datos
+     */
     public void realizarCita(Cliente cliente, int idDoctor, Timestamp fecha, String mensaje, String estado) throws SQLException {
         Connection cn = MySQLConexion.getConexion();
         String sql = "{CALL realizar_cita(?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -100,6 +117,14 @@ public class CitasDAO implements IGenericDAO<Cita> {
         }
     }
 
+    /**
+     * Verifica la disponibilidad de un doctor en una fecha y hora específicas.
+     *
+     * @param idDoctor el ID del doctor
+     * @param fecha    la fecha y hora que se desea verificar
+     * @return {@code true} si el doctor está disponible, {@code false} de lo contrario
+     * @throws SQLException si ocurre un error al acceder a la base de datos
+     */
     public boolean verificarDisponibilidad(int idDoctor, Timestamp fecha) throws SQLException {
         // Verificar que la fecha sea en el futuro
         if (fecha.before(new Timestamp(System.currentTimeMillis()))) {
