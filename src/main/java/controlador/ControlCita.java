@@ -13,10 +13,21 @@ import java.util.List;
 import java.util.Map;
 import modelo.*;
 
+/**
+ * ControlCita es un servlet que maneja las operaciones relacionadas con las citas.
+ */
 public class ControlCita extends HttpServlet {
 
     CrudCitaDAO obj = new CrudCitaDAO();  // Ajustado para usar CrudCitaDAO
 
+    /**
+     * Procesa las solicitudes HTTP tanto GET como POST.
+     *
+     * @param request  el objeto HttpServletRequest que contiene la solicitud del cliente
+     * @param response el objeto HttpServletResponse que contiene la respuesta que el servlet devuelve
+     * @throws ServletException si ocurre un error específico del servlet
+     * @throws IOException      si hay un error de entrada/salida
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int op = Integer.parseInt(request.getParameter("opc"));
@@ -42,7 +53,15 @@ public class ControlCita extends HttpServlet {
         }
     }
 
-    protected void mostrarDatos(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Muestra los datos de la cita en la interfaz correspondiente.
+     *
+     * @param request  el objeto HttpServletRequest que contiene la solicitud del cliente
+     * @param response el objeto HttpServletResponse que contiene la respuesta que el servlet devuelve
+     * @throws ServletException si ocurre un error específico del servlet
+     * @throws IOException      si hay un error de entrada/salida
+     */
+    private void mostrarDatos(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtener los datos desde el CrudCitaDAO
         List<Map<String, Object>> citasCompletas = obj.mostrarCita();  // Asegúrate de que mostrarCita devuelve los datos completos de las citas
