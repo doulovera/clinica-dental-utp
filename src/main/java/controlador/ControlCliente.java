@@ -109,12 +109,24 @@ public class ControlCliente extends HttpServlet {
     }
 
     protected void eliminarCliente(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        ClienteDAO clienteDAO = new ClienteDAO();
-        clienteDAO.eliminar(id);
-        response.sendRedirect("ControlCliente?opc=1"); // Redirecciona al listado de clientes
+        throws ServletException, IOException, SQLException {
+    String idParam = request.getParameter("id");
+    if (idParam != null && !idParam.trim().isEmpty()) {
+        try {
+            int id = Integer.parseInt(idParam);
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.eliminar(id);
+            response.sendRedirect("ControlCliente?opc=1"); // Redirecciona al listado de clientes
+        } catch (NumberFormatException e) {
+            // Manejo del error si el id no es un número válido
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido para eliminación");
+        }
+    } else {
+        // Manejo del caso cuando el ID está vacío o no se envió
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID faltante para eliminación");
     }
+}
+
 
     protected void mostrarHistorial(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

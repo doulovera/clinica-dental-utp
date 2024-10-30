@@ -30,14 +30,6 @@ public class LoginServlet extends HttpServlet {
         response.sendRedirect("admin/index.jsp");
     }
 
-    /**
-     * Handles the HTTP POST request for user login.
-     *
-     * @param request  the HttpServletRequest object that contains the request the client made
-     * @param response the HttpServletResponse object that contains the response the servlet returns
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,13 +65,9 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Provides a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Servlet de manejo de inicio de sesión";
     }
 }
+
