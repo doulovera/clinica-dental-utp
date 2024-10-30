@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-   version="4.0">
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <servlet-name>EmpleadoControlador</servlet-name>
+        <servlet-class>controlador.EmpleadoControlador</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlVetInser</servlet-name>
+        <servlet-class>controlador.ControlVetInser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlCita</servlet-name>
+        <servlet-class>controlador.ControlCita</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlDoctor</servlet-name>
+        <servlet-class>controlador.ControlDoctor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlCliente</servlet-name>
+        <servlet-class>controlador.ControlCliente</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmpleadoControlador</servlet-name>
+        <url-pattern>/EmpleadoControlador</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlVetInser</servlet-name>
+        <url-pattern>/ControlVetInser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlCita</servlet-name>
+        <url-pattern>/ControlCita</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlDoctor</servlet-name>
+        <url-pattern>/ControlDoctor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlCliente</servlet-name>
+        <url-pattern>/ControlCliente</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

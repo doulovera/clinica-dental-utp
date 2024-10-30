@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-    private static final String DB_NAME = "asistencia_prueba";
+    private static final String DB_NAME = "dental";
     private static final String URL = "jdbc:mysql://localhost:3306/" + DB_NAME; // URL
     private static final String USER = "root"; // Usuario
     private static final String PASSWORD = ""; // Contraseña
@@ -19,6 +19,7 @@ public class DBConnection {
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 System.out.println("Conexión exitosa a la base de datos '" + DB_NAME + "'");
             } catch (ClassNotFoundException e) {
+
                 System.err.println("Error: Driver no encontrado.");
             } catch (SQLException e) {
                 System.err.println("Error en la conexión: " + e.getMessage());
