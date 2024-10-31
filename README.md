@@ -23,7 +23,7 @@ Aplicación web para manejar citas médicas en la clínica dental Palmeras.
 
 ### ✨ Prerequisitos
 
-- **Java 1.8**
+- **Java**
 - **Maven**
 - **MySQL** Database
 
